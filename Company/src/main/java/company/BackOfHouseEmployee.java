@@ -22,8 +22,9 @@ public abstract class BackOfHouseEmployee extends Employee {
 
     //MUST throw an exception if:
     //Wages are set lower than 7.25$ - UNIMPLEMENTED
-    public BackOfHouseEmployee(){
-        
+
+    public BackOfHouseEmployee(String fName, String lName, int id, double hours, double wage){
+        super(fName, lName, id, hours, wage); // Passes this data to the super class's constructor (Employee).
     }
 
     public double calculatePay() {

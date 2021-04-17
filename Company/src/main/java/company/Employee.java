@@ -14,18 +14,34 @@ public abstract class Employee implements PayCalculator {
 
     private double hours; //The amount of hours worked, a double since employees wont work exact hours sometimes
     private double wage; //The wage of an employee
-    //private String fName; // First name
-    //private String lName; // Last name 
+    private String fName; // First name
+    private String lName; // Last name
+    private int id; // Employee ID
 
     //public Employee(){ //default constructor
     //    this.hours = 0;
     //    this.wage = 7.25;
     //}
 
-    //public Employee(int hours, int wage){
-    //    this.hours = hours;
-    //    this.wage = wage;
-    //}
+    public Employee(String fName, String lName, int id, double hours, double wage){
+        this.fName = fName;
+        this.lName = lName;
+        this.id = id;
+        this.hours = hours;
+        this.wage = wage;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     //getter and setter methods for all employee variables
     public double getHours() {

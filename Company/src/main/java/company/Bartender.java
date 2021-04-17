@@ -15,16 +15,15 @@ public final class Bartender extends FrontOfHouseEmployee implements PayCalculat
     
     private int guestsServed;
 
-    public Bartender(){ //default constructor, all values set minimum (which is why the super keyword is used, because the parent default is also minimum)
-       
-        
-        setWage(0);
-        setHours(0);
-        //setTipTable(super.getTipTable());
-        guestsServed = 0;
-    }
+//    public Bartender(){ //default constructor, all values set minimum (which is why the super keyword is used, because the parent default is also minimum)
+//        setWage(0);
+//        setHours(0);
+//        //setTipTable(super.getTipTable());
+//        guestsServed = 0;
+//    }
 
-    public Bartender(double hours, int guests_served, double[] tipTable){
+    public Bartender(String fName, String lName, int id, double hours, double wage, int guests_served, double[] tipTable){
+        super(fName, lName, id, hours, wage, tipTable); // Passes this data to the super class's constructor (FrontOfHouseEmployee).
         setWage(5.00);
         setHours(hours);
         this.guestsServed = guests_served;
