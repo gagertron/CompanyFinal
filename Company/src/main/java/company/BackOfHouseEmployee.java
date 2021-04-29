@@ -34,7 +34,7 @@ public abstract class BackOfHouseEmployee extends Employee {
     public BackOfHouseEmployee(String fName, String lName, int id, double hours, String membership){
         super(fName, lName, id, hours); // Passes this data to the super class's constructor (Employee).
         setMembership(membership);  // Set the membership level. Can only be 1 of 3 choices. 
-        //setWage(wage);  // Set the wage level. Will vary depending on job type and memberhsip level.
+        //setWage(wage);  // Set the wage level. Will vary depending on job type and membership level.
     }
 
     public double calculatePay() {
@@ -106,15 +106,36 @@ public abstract class BackOfHouseEmployee extends Employee {
      * @author David Mendez
      */
     public void simulateDay(int numDays){
+
         Random rand = new Random();
-        int hoursWorked = 0;
-        int maxHoursWorked = 8; //This is per day.
-        int numBreaks = 0;
-        int maxBreaks = 3; // per day
-        int breakTimeHour = 0; // Hour and minute will be later combined into a double.
-        int breakTimeMinute = 0;
-        int maxBreakHour = 1; // per day
-        int maxBreakMinute = 9; // This is the number on the right of the decimal. ex. 1.9
+        int minHoursWorked = 4;
+        int maxHoursWorked = 8; // per day.
+        double totalBreakTime = 0;
+        double totalHoursWorked = 0;
+        double[] hourArray = new double[numDays]; // Create an array the size of the number of days passed in.
+        double[] breakArray = new double[numDays];
+
+        for (int i = 0; i < numDays; i++) {
+            // Break
+            boolean tookBreak = rand.nextBoolean();
+            int breakTime = 0;
+            if (tookBreak) {
+                breakTime = 1;
+                totalBreakTime += breakTime;
+            }
+            breakArray[i] = breakTime;
+
+            // Hours Worked
+            int hoursWorked = rand.nextInt(maxHoursWorked - minHoursWorked) + minHoursWorked; // Generates a number between 1 and 8
+            hourArray[i] = hoursWorked;
+            totalHoursWorked += hoursWorked;
+        }
+        setBreakTime(totalBreakTime); // Set the total break time
+        setHours(totalHoursWorked); // Set the total hours worked
+
+        // I've also got the individual generated break times stored in breakArray[].
+        // The hourArray[] also has the individual generated time in each index.
+        // Both arrays are currently not used or passed to anything yet.
 
     }
 }

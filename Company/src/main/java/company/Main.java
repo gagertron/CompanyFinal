@@ -37,25 +37,30 @@ public class Main {
          
         // System.out.println(workers[0].calculatePay());
 
-         // hours , guestsServed, arrayOfTips
-         Bartender jack = new Bartender("Jack", "Wilson", 1, 2.0,3);
-         Bartender rick = new Bartender("Rick", "Turner", 2, 4.0,12);
+        // hours , guestsServed, arrayOfTips
+        Bartender jack = new Bartender("Jack", "Wilson", 1, 2.0,3);
+        Bartender rick = new Bartender("Rick", "Turner", 2, 4.0,12);
 
         
-         // Does not take a wage in constructor, but sets the wage of the class in constructor.
-         // Wage is based on membership given. 
-         // fname, lname, id #, hours worked, membership level
-        //Chef james = new Chef("James", "Smith", 3, 7.3, "Gold");
+        // Does not take a wage in constructor, but sets the wage of the class in constructor.
+        // Wage is based on membership given.
+        // fname, lname, id #, hours worked, membership level
+        Chef james = new Chef("James", "Smith", 3, 7.3, "Gold");
 
         // Since Jack is a Bartender, it will use the simulateDay method for FrontOfHouseEmployee.
         jack.simulateDay(daysWorked());
-
         // Just to show that the calculation works.
         System.out.println("Jack's list of tips: " + Arrays.toString(jack.getTipTable()));
         System.out.println("Jack's total tip amt: $" + jack.getTips());
         System.out.println("Jack's hours: " + jack.getHours());
         System.out.println("Jack's wage: " + jack.getWage());
         System.out.println("Jack's total Pay = $" + jack.calculatePay());
+        System.out.println("");
+
+        // James is a Chef, so it will use the simulateDay in the BackOfHouseEmployee class.
+        james.simulateDay(daysWorked());
+        System.out.println("James's total break time: " + james.getBreakTime());
+        System.out.println("James's total hours worked: " + james.getHours());
         
     }
 
@@ -70,6 +75,7 @@ public class Main {
         if(days == 0){
             days = 1;
         }
+        System.out.println("Number of days generated: " + days);
         return days;
 
     }
