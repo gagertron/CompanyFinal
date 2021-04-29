@@ -34,10 +34,9 @@ public abstract class FrontOfHouseEmployee extends Employee {
     //}
     
     // set hours, wage, tips for a day 
-    public FrontOfHouseEmployee(String fName, String lName, int id, double hours, double wage, double[] tipTable){
+    public FrontOfHouseEmployee(String fName, String lName, int id, double hours){
         super(fName, lName, id, hours); // Passes this data to the super class's constructor (Employee).
         setWage(wage);
-        setTipTable(tipTable);
     }
     //setter and getter methods
     public double[] getTipTable() { //Does NOT calculate total tips, the getTips() function does

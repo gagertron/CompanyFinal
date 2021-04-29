@@ -22,13 +22,11 @@ public final class Bartender extends FrontOfHouseEmployee {
 //        guestsServed = 0;
 //    }
 
-    public Bartender(String fName, String lName, int id, double hours, double wage, int guests_served, double[] tipTable){
-        super(fName, lName, id, hours, wage, tipTable); // Passes this data to the super class's constructor (FrontOfHouseEmployee).
+    public Bartender(String fName, String lName, int id, double hours, int guests_served){
+        super(fName, lName, id, hours); // Passes this data to the super class's constructor (FrontOfHouseEmployee).
         setWage(5.00);
         setHours(hours);
         this.guestsServed = guests_served;
-        setTipTable(tipTable);
-        
     }
     //setters and getters
     public int getGuestsServed() {
