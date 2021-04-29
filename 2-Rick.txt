@@ -3,9 +3,4 @@ LAST NAME: Turner
 Wage: 5.0
 ID: 2
 DAY: 1
-$43
-$17
-$10
-$28
-$10
-$31
+$23

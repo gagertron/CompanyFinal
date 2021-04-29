@@ -5,6 +5,14 @@
  */
 package company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Vector;
+
 /**
  *
  * @author laste
@@ -92,4 +100,21 @@ public abstract class BackOfHouseEmployee extends Employee {
     //        return 40 * getWage() + (40 - getHours()) * (getWage() * 1.5);
     //    return getHours() * getWage();
     //}
+
+    /**
+     * A day simulator for Back of House Employees.
+     * @author David Mendez
+     */
+    public void simulateDay(int numDays){
+        Random rand = new Random();
+        int hoursWorked = 0;
+        int maxHoursWorked = 8; //This is per day.
+        int numBreaks = 0;
+        int maxBreaks = 3; // per day
+        int breakTimeHour = 0; // Hour and minute will be later combined into a double.
+        int breakTimeMinute = 0;
+        int maxBreakHour = 1; // per day
+        int maxBreakMinute = 9; // This is the number on the right of the decimal. ex. 1.9
+
+    }
 }

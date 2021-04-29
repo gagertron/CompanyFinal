@@ -36,10 +36,7 @@ public class Main {
         // workers[1] = new Bartender();
          
         // System.out.println(workers[0].calculatePay());
-         
-         // create a tipTable to work with
-         // double[] tips = {22.50, 10.00, 5};
-         
+
          // hours , guestsServed, arrayOfTips
          Bartender jack = new Bartender("Jack", "Wilson", 1, 2.0,3);
          Bartender rick = new Bartender("Rick", "Turner", 2, 4.0,12);
@@ -49,13 +46,9 @@ public class Main {
          // Wage is based on membership given. 
          // fname, lname, id #, hours worked, membership level
         //Chef james = new Chef("James", "Smith", 3, 7.3, "Gold");
-         
-        // Write Jack's info to a txt file.
-        // I've created another function that will return a random number between 1-7.
-        // You can use it like this below, or you can set a variable to daysWorked if you want all
-        // of the employees to have the same amount of generated days.
-        daySimulator(jack, daysWorked());
-        daySimulator(rick, daysWorked());
+
+        // Since Jack is a Bartender, it will use the simulateDay method for FrontOfHouseEmployee.
+        jack.simulateDay(daysWorked());
 
         // Just to show that the calculation works.
         System.out.println("Jack's list of tips: " + Arrays.toString(jack.getTipTable()));
@@ -64,80 +57,6 @@ public class Main {
         System.out.println("Jack's wage: " + jack.getWage());
         System.out.println("Jack's total Pay = $" + jack.calculatePay());
         
-    }
-
-    /**
-     * A simple generator that will randomly generate tip amounts on a given day.
-     * Just pass in an employee object and the number of days you want to generate.
-     * Needs for the employee class to have a First and Last Name as well as an employee ID.
-     * Will then export the txt file in the project directory with the employee id and first name as the file name.
-     * @author David Mendez
-     */
-
-    public static void daySimulator(FrontOfHouseEmployee employee, int numDays){
-
-        Random rand = new Random();
-        int upperbound = 10; //Max 10 tips in a given day.
-        int tipUpperbound = 50; //Max $50 a tip
-
-        int id = employee.getId();
-        int day = 1;
-        int arraySize = 0;
-        Vector tipList = new Vector(); // Used to store the tips generated.
-
-        //Write to file
-        try{
-            FileWriter myWriter = new FileWriter(id+"-"+employee.getfName()+".txt");
-            myWriter.write("FIRST NAME: " + employee.getfName() + "\n");
-            myWriter.write("LAST NAME: " + employee.getlName() + "\n");
-            myWriter.write("Wage: " + employee.getWage() + "\n");
-            myWriter.write("ID: "+id+"\n");
-
-            //Append the tips.
-            for (int i = 0; i < numDays; i++) {
-
-                // Creates number of tips made in a day. Minimum 1 tip. 
-                myWriter.write("DAY: "+ day +"\n");
-                int numberOfTips = rand.nextInt(upperbound);
-                if (numberOfTips==0) numberOfTips = 1;
-                
-                for (int j = 0; j < numberOfTips; j++) {
-                    int tipAmount = rand.nextInt(tipUpperbound);
-                    if (tipAmount == 0) tipAmount = 1;
-                    myWriter.write("$"+tipAmount+"\n");
-                    tipList.addElement(tipAmount); // Add the tipAmount to the vector list.
-                    arraySize++;
-                }
-                day++;
-            }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-            // Now that we know the size of the array we can set it here so that we can pass it
-            // to the object's TipTable.
-            double[] tips = new double[arraySize];
-            for (int i = 0; i < arraySize; i++) {
-                tips[i] = (int) tipList.get(i); // Cast to an int so that it can be read by the array which will turn it into a double.
-            }
-            employee.setTipTable(tips);
-
-        } catch (IOException e){
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        // This is just to see how to read from the text file.
-        try {
-            File myFile = new File(id+"-"+employee.getfName()+".txt");
-            Scanner myReader = new Scanner(myFile);
-            while (myReader.hasNextLine()){
-                String data = myReader.nextLine();
-                //System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e){
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
     }
 
     /**

@@ -5,6 +5,14 @@
  */
 package company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Vector;
+
 /**
  *
  * @author laste
@@ -77,5 +85,77 @@ public abstract class FrontOfHouseEmployee extends Employee {
     //public double getMoney(){ //Calculate a tipped employees earnings, which is tips earned added to the wage
     //    return getTips() + getHours() * getWage();
     //}
+
+    /**
+     * A simple generator that will randomly generate tip amounts on a given day.
+     * Just pass in the number of days you want to generate.
+     * Needs for the employee class to have a First and Last Name as well as an employee ID.
+     * Will then export the txt file in the project directory with the employee id and first name as the file name.
+     * @author David Mendez
+     */
+    public void simulateDay(int numDays){
+        Random rand = new Random();
+        int upperbound = 10; //Max 10 tips in a given day.
+        int tipUpperbound = 50; //Max $50 a tip
+
+        int id = getId();
+        int day = 1;
+        int arraySize = 0;
+        Vector tipList = new Vector(); // Used to store the tips generated.
+
+        //Write to file
+        try{
+            FileWriter myWriter = new FileWriter(id+"-"+super.getfName()+".txt");
+            myWriter.write("FIRST NAME: " + getfName() + "\n");
+            myWriter.write("LAST NAME: " + getlName() + "\n");
+            myWriter.write("Wage: " + getWage() + "\n");
+            myWriter.write("ID: "+id+"\n");
+
+            //Append the tips.
+            for (int i = 0; i < numDays; i++) {
+
+                // Creates number of tips made in a day. Minimum 1 tip.
+                myWriter.write("DAY: "+ day +"\n");
+                int numberOfTips = rand.nextInt(upperbound);
+                if (numberOfTips==0) numberOfTips = 1;
+
+                for (int j = 0; j < numberOfTips; j++) {
+                    int tipAmount = rand.nextInt(tipUpperbound);
+                    if (tipAmount == 0) tipAmount = 1;
+                    myWriter.write("$"+tipAmount+"\n");
+                    tipList.addElement(tipAmount); // Add the tipAmount to the vector list.
+                    arraySize++;
+                }
+                day++;
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+            // Now that we know the size of the array we can set it here so that we can pass it
+            // to the object's TipTable.
+            double[] tips = new double[arraySize];
+            for (int i = 0; i < arraySize; i++) {
+                tips[i] = (int) tipList.get(i); // Cast to an int so that it can be read by the array which will turn it into a double.
+            }
+            setTipTable(tips);
+
+        } catch (IOException e){
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        // This is just to see how to read from the text file.
+        try {
+            File myFile = new File(id+"-"+getfName()+".txt");
+            Scanner myReader = new Scanner(myFile);
+            while (myReader.hasNextLine()){
+                String data = myReader.nextLine();
+                //System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e){
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 }
 
