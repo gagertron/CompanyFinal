@@ -45,9 +45,20 @@ public class Main {
          Bartender jack = new Bartender("Jack", "Wilson", 1, 2.0, 7.5, 3, tips);
          Bartender rick = new Bartender("Rick", "Turner", 2, 4.0, 7.5, 12, tips);
 
+        
+         // Does not take a wage in constructor, but sets the wage of the class in constructor.
+         // Wage is based on membership given. 
+         // fname, lname, id #, hours worked, membership level
+        //Chef james = new Chef("James", "Smith", 3, 7.3, "Gold");
+         
         // Write Jack's info to a txt file.
-        daySimulator(jack, 3); // Generate info for jack working 3 days.
+        // COMMENT #1 .. Let me know what you think
+        // In the future I'm thinking we might be able to randomly generate days worked
+        // and pass it to a variable and use that same variable for each person. 
+        int jacksDaysWorked = 3;
+        daySimulator(jack, jacksDaysWorked); // Generate info for jack working 3 days.
         daySimulator(rick, 7);
+        
     }
 
     // A simple generator that will randomly generate tip amounts on a given day.
@@ -74,10 +85,18 @@ public class Main {
             //Append the tips.
             for (int i = 0; i < numDays; i++) {
 
+                // Creates number of tips made in a day. Minimum 1 tip. 
                 myWriter.write("DAY: "+ day +"\n");
                 int numberOfTips = rand.nextInt(upperbound);
                 if (numberOfTips==0) numberOfTips = 1;
 
+                // COMMENT #2
+                // We need to put the tip amount into some sort of array or vector.
+                // That array or vector of tips will be used in the calculate pay function.
+                // I'm thinking it'd be something like employee.setTipTable()?
+                // That way we won't have to read through the file, we can get the 
+                // information as its generated.
+                
                 for (int j = 0; j < numberOfTips; j++) {
                     int tipAmount = rand.nextInt(tipUpperbound);
                     if (tipAmount == 0) tipAmount = 1;
@@ -106,4 +125,43 @@ public class Main {
             e.printStackTrace();
         }
     }
+    
+    // COMMENT #3
+    // This is what I envision having on Chef's daySimulator version.
+    // Keep in mind, chef's don't use tips. And their is no wage in their constructor,
+    // they set their wage via a function in the constructor based on the membership string given.
+    // 
+    // 1. daysWorked can either be randomly generated or you can just punch in a number like you've already done.
+    // 2. randomly generate the amount of hours that were worked in one day (this should be 1 number per day)
+    // 3. input the amount of breaks that were taken each day. (For simplicity sakes I'm thinking 1 break taken per day
+    // think of it as a lunch break. And we can maybe randomly generate 0-3 breaks taken a day in the future.
+    // 4. Randomly generate the amount of time taken for each break. The amount of time for each break will be 
+    // deducted from the total hours worked that week. If 42 hours were worked, but 4 hours of breaks were taken
+    // that chef will not recieve his overtime for working over 40 hours. 
+    // 5. Ideally take the number of hours worked each day as it's generated and put it into an array or vector.
+    // this will be used in the calculatePay function.
+    // 6. Do the same as 5 but for the breaks. So we can keep track of the time of breaks and suibtract it from
+    // total hours worked within the calculatePay function. IM THINKING HOURSWORKED, AND TOTALBREAKTIME 
+    // SHOULD BE TWO SEPARATE ARRAYS.
+    
+    
+    /*
+        What I am envisioning, thinking about when I say my comments.
+    
+    This program is gearing towards manually assigning or randomly generating an employee's
+    days worked in a 7 day week , hourly wage , hours worked per day, breaks taken per day,
+    time of each break each day, and each tip that was earned on a given day. We can use all
+    this to calculate an employees pay at the end of each day, each week, and make sure employees
+    are paid at least minimum wage or compensated for overtime. Ideally we'll have arrays or vectors
+    for each of these categories for each class and all we'll have to do is read from that class' 
+    function and not have to read from files. 
+    
+    I'm not sure what would be easier for Gordon to translate into a GUI, the class functions
+    or reading from a file. 
+    
+    
+    
+    
+    */
+    
 }

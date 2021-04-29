@@ -11,7 +11,7 @@ package company;
  */
  //The Bartender class is a tipped/FOH Employee
 //The Bartender class has a unique variable tracking how many guests they have served
-public final class Bartender extends FrontOfHouseEmployee implements PayCalculator {
+public final class Bartender extends FrontOfHouseEmployee {
     
     private int guestsServed;
 
@@ -39,6 +39,11 @@ public final class Bartender extends FrontOfHouseEmployee implements PayCalculat
         this.guestsServed = guests_served;
     }
 
-    //INCOMPLETE
+    // Subtracts total break time from total hours worked. 
+    @Override
+    public double takeBreak()
+    {
+        return super.getBreakTime() - super.getHours();
+    }
 }
 

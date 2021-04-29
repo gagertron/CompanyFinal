@@ -19,12 +19,14 @@ package company;
 public abstract class BackOfHouseEmployee extends Employee {
     //VARIABLE - UNIMPLEMENTED
     private String membership;  // the rank of employee which determines pay grade
-
+    private double wage;
     //MUST throw an exception if:
     //Wages are set lower than 7.25$ - UNIMPLEMENTED
 
-    public BackOfHouseEmployee(String fName, String lName, int id, double hours, double wage){
-        super(fName, lName, id, hours, wage); // Passes this data to the super class's constructor (Employee).
+    public BackOfHouseEmployee(String fName, String lName, int id, double hours, String membership){
+        super(fName, lName, id, hours); // Passes this data to the super class's constructor (Employee).
+        setMembership(membership);  // Set the membership level. Can only be 1 of 3 choices. 
+        //setWage(wage);  // Set the wage level. Will vary depending on job type and memberhsip level.
     }
 
     public double calculatePay() {
@@ -69,6 +71,19 @@ public abstract class BackOfHouseEmployee extends Employee {
     public String getMembership()   
     {
             return this.membership;
+    }
+    
+    // A simple setter for the wage.
+    // Not sure how it will work with polymorphism
+    // Ideally I want subclasses of this class to use their overridden setWage functions during polymorphism.
+   // public void setWage(double wage)
+   // {
+   //     this.wage = wage;
+   // }
+    
+    public double getWage()
+    {
+        return this.wage;
     }
     
     //@Override

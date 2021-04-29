@@ -14,6 +14,7 @@ package company;
 public abstract class FrontOfHouseEmployee extends Employee {
 
     private double[] tipTable;
+    private double wage;
     //MUST throw an exception if:
     //Wages are set lower than 2.13$ - UNIMPLEMENTED
     //Hours exceeds 40 (FOH Employees cannot work overtime) - UNIMPLEMENTED
@@ -34,7 +35,8 @@ public abstract class FrontOfHouseEmployee extends Employee {
     
     // set hours, wage, tips for a day 
     public FrontOfHouseEmployee(String fName, String lName, int id, double hours, double wage, double[] tipTable){
-        super(fName, lName, id, hours, wage); // Passes this data to the super class's constructor (Employee).
+        super(fName, lName, id, hours); // Passes this data to the super class's constructor (Employee).
+        setWage(wage);
         setTipTable(tipTable);
     }
     //setter and getter methods
@@ -55,6 +57,16 @@ public abstract class FrontOfHouseEmployee extends Employee {
         this.tipTable = tipTable;
     }
 
+    public void setWage(double wage)
+    {
+        this.wage = wage;
+    }
+    
+    public double getWage()
+    {
+        return this.wage;
+    }
+    
     // from interface PayCalculator
     @Override
     public double calculatePay()
