@@ -87,10 +87,10 @@ public abstract class FrontOfHouseEmployee extends Employee {
     //}
 
     /**
-     * A simple generator that will randomly generate tip amounts on a given day.
+     * A day simulator for Front of House Employees
      * Just pass in the number of days you want to generate.
-     * Needs for the employee class to have a First and Last Name as well as an employee ID.
-     * Will then export the txt file in the project directory with the employee id and first name as the file name.
+     * Will randomly generate a list of tips and their amount on a given day.
+     * It will then assign the list to the object's TipTable array.
      * @author David Mendez
      */
     public void simulateDay(int numDays){

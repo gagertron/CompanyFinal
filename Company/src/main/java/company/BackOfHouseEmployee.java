@@ -103,6 +103,8 @@ public abstract class BackOfHouseEmployee extends Employee {
 
     /**
      * A day simulator for Back of House Employees.
+     * Will randomly generate the hours worked each day as well as generate
+     * if the employee took an hour break on a certain day.
      * @author David Mendez
      */
     public void simulateDay(int numDays){
@@ -120,7 +122,7 @@ public abstract class BackOfHouseEmployee extends Employee {
             boolean tookBreak = rand.nextBoolean();
             int breakTime = 0;
             if (tookBreak) {
-                breakTime = 1;
+                breakTime = 1; // 1 hour
                 totalBreakTime += breakTime;
             }
             breakArray[i] = breakTime;
@@ -133,9 +135,10 @@ public abstract class BackOfHouseEmployee extends Employee {
         setBreakTime(totalBreakTime); // Set the total break time
         setHours(totalHoursWorked); // Set the total hours worked
 
-        // I've also got the individual generated break times stored in breakArray[].
-        // The hourArray[] also has the individual generated time in each index.
-        // Both arrays are currently not used or passed to anything yet.
+        // hourArray[] and breakArray[] both have the data already in them but aren't used yet.
+        // Whenever you have somewhere to send their data, just put the code in this area.
+        // Example
+        // setHourArray(hourArray);
 
     }
 }
